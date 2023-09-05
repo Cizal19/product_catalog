@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:product_catalog/models/Product.dart';
 import 'package:product_catalog/models/products.api.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class ProductsPage extends StatefulWidget {
+  const ProductsPage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<ProductsPage> createState() => _ProductsPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _ProductsPageState extends State<ProductsPage> {
   List<Product> products = [];
   @override
   void initState() {
