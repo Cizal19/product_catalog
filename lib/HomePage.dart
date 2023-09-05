@@ -10,23 +10,28 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List products = [];
+  List<Product> products = [];
   @override
   void initState() {
     super.initState();
     getProducts();
   }
 
-  Future<void> getProducts() async {
+  Future<List<Product>> getProducts() async {
     products = await ProductsApi.getProducts();
-    print(products);
+    // print(products);
+    return products;
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Product List"),
+        title: Text(
+          "Product Catalog",
+          style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: Color(0xff46a094),
       ),
       body: FutureBuilder<List<Product>>(
         future: getProducts(),
@@ -62,26 +67,3 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
-
-
-
-// ListView.builder(
-//           itemBuilder: (context, index) {
-//             return Padding(
-//               padding:
-//                   const EdgeInsets.symmetric(horizontal: 4.0, vertical: 1.0),
-//               child: Card(
-//                 child: ListTile(
-//                   onTap: () {},
-//                   // title: Text(products[index]["title"]),
-//                   title: Text(products[index].title),
-//                 ),
-//               ),
-//             );
-//           },
-//           itemCount: products.length,
-//         )
-
-
-
-
