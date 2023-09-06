@@ -76,21 +76,24 @@ class _DetailsPageState extends State<DetailsPage> {
       body: Column(
         children: [
           CarouselSlider(
-            options: CarouselOptions(height: 350.0),
-            items: [1, 2, 3].map((i) {
-              return Builder(
-                builder: (BuildContext context) {
-                  return Container(
-                    width: MediaQuery.of(context).size.width,
-                    margin: EdgeInsets.symmetric(horizontal: 5.0),
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: NetworkImage(product["images"][i]))),
-                  );
-                },
-              );
-            }).toList(),
-          ),
+              options: CarouselOptions(height: 350.0),
+              items: product["images"].map((image) {
+                return Builder(
+                  builder: (BuildContext context) {
+                    return Container(
+                        width: MediaQuery.of(context).size.width,
+                        margin: EdgeInsets.symmetric(horizontal: 5.0),
+                        decoration: BoxDecoration(
+                          image: DecorationImage(image: NetworkImage(image)),
+                          // child: Center(
+                          //   child: Text(
+                          //     'Product ${product["name"]}',
+                          //     style: TextStyle(fontSize: 16.0),
+                          //   ),
+                        ));
+                  },
+                );
+              })),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -155,20 +158,18 @@ class _DetailsPageState extends State<DetailsPage> {
 }
 
 
-// product["images"].map((image) {
-//                 return Builder(
-//                   builder: (BuildContext context) {
-//                     return Container(
-//                         width: MediaQuery.of(context).size.width,
-//                         margin: EdgeInsets.symmetric(horizontal: 5.0),
-//                         decoration:
-//                             BoxDecoration(image: DecorationImage(image: image)),
-//                         child: Center(
-//                           child: Text(
-//                             'Product ${product["name"]}',
-//                             style: TextStyle(fontSize: 16.0),
-//                           ),
-//                         ));
-//                   },
-//                 );
-//               }).toList()
+
+
+// [1, 2, 3].map((i) {
+//               return Builder(
+//                 builder: (BuildContext context) {
+//                   return Container(
+//                     width: MediaQuery.of(context).size.width,
+//                     margin: EdgeInsets.symmetric(horizontal: 5.0),
+//                     decoration: BoxDecoration(
+//                         image: DecorationImage(
+//                             image: NetworkImage(product["images"][i]))),
+//                   );
+//                 },
+//               );
+//             }).toList(),
