@@ -35,46 +35,6 @@ class _DetailsPageState extends State<DetailsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[100],
-      // appBar: AppBar(
-      //     title: Text(
-      //       "Product Catalog",
-      //       style: TextStyle(color: Colors.white),
-      //     ),
-      //     backgroundColor: Color(0xff46a094),
-      //     iconTheme: IconThemeData(color: Colors.white)),
-      // drawer: Drawer(
-      //   child: ListView(
-      //     // Important: Remove any padding from the ListView.
-      //     padding: EdgeInsets.zero,
-      //     children: [
-      //       const DrawerHeader(
-      //         decoration: BoxDecoration(
-      //           color: Color(0xff6bbd99),
-      //         ),
-      //         child: Center(
-      //           child: Text(
-      //             'Categories',
-      //             style: TextStyle(color: Colors.white, fontSize: 25.0),
-      //           ),
-      //         ),
-      //       ),
-      //       ListTile(
-      //         title: const Text('Category 1'),
-      //         onTap: () {
-      //           // Update the state of the app.
-      //           // ...
-      //         },
-      //       ),
-      //       ListTile(
-      //         title: const Text('Category 2'),
-      //         onTap: () {
-      //           // Update the state of the app.
-      //           // ...
-      //         },
-      //       ),
-      //     ],
-      //   ),
-      // ),
       appBar: MyAppBar(
         title: "${product["title"]}",
       ),
@@ -87,16 +47,11 @@ class _DetailsPageState extends State<DetailsPage> {
                 return Builder(
                   builder: (BuildContext context) {
                     return Container(
-                        width: MediaQuery.of(context).size.width,
-                        margin: EdgeInsets.symmetric(horizontal: 5.0),
-                        decoration: BoxDecoration(
-                            image: DecorationImage(image: NetworkImage(image))),
-                        child: Center(
-                          child: Text(
-                            'Product ${product["name"]}',
-                            style: TextStyle(fontSize: 16.0),
-                          ),
-                        ));
+                      width: MediaQuery.of(context).size.width,
+                      margin: EdgeInsets.symmetric(horizontal: 5.0),
+                      decoration: BoxDecoration(
+                          image: DecorationImage(image: NetworkImage(image))),
+                    );
                   },
                 );
               }).toList()),

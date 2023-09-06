@@ -7,12 +7,12 @@ class ProductsApi {
     final res = await get(Uri.parse("https://dummyjson.com/products"));
     final data = jsonDecode(res.body);
 
-    List dataList = [];
+    List productList = [];
 
     for (var i = 0; i < data["products"].length; i++) {
-      dataList.add(data["products"][i]);
+      productList.add(data["products"][i]);
     }
 
-    return Product.productsFromSnapshot(dataList);
+    return Product.productsFromSnapshot(productList);
   }
 }
