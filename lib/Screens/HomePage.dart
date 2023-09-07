@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:product_catalog/Widgets/HomePageCarousel.dart';
+import 'package:product_catalog/Widgets/HomePageGrid.dart';
 import 'package:product_catalog/Widgets/MyAppBar.dart';
 import 'package:product_catalog/Widgets/MyDrawer.dart';
 
@@ -57,31 +58,7 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ),
-          GridView.count(
-            primary: false,
-            padding: const EdgeInsets.all(20),
-            crossAxisSpacing: 10,
-            mainAxisSpacing: 10,
-            crossAxisCount: 2,
-            // scrollDirection: Axis.horizontal,
-            shrinkWrap: true,
-            children: [1, 2, 3, 4, 5, 6].map((i) {
-              return Builder(
-                builder: (BuildContext context) {
-                  return Container(
-                      width: MediaQuery.of(context).size.width,
-                      margin: EdgeInsets.symmetric(horizontal: 5.0),
-                      decoration: BoxDecoration(color: Color(0xffc4e8c2)),
-                      child: Center(
-                        child: Text(
-                          'Product $i',
-                          style: TextStyle(fontSize: 16.0),
-                        ),
-                      ));
-                },
-              );
-            }).toList(),
-          )
+          const HomePageGrid(),
         ]),
       ),
     );
