@@ -17,48 +17,56 @@ Future<List<String>> getCategories() async {
 }
 
 class MyDrawer extends Drawer {
-  MyDrawer({Key? key, Widget? child})
-      : super(
-            key: key,
-            child: ListView(
-                // Important: Remove any padding from the ListView.
-                padding: EdgeInsets.zero,
-                children: [
-                  const UserAccountsDrawerHeader(
-                    accountName: Text("John Doe"),
-                    accountEmail: Text("johndoe@example.com"),
-                    decoration: BoxDecoration(
-                      color: Color(0xff6bbd99),
-                    ),
-                    currentAccountPicture: CircleAvatar(
-                      backgroundColor: Colors.white,
-                      child: Icon(Icons.person),
-                    ),
-                  ),
-                  FutureBuilder<List<String>>(
-                    future: getCategories(),
-                    builder: (context, snapshot) {
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        return Center(child: CircularProgressIndicator());
-                      } else if (snapshot.hasError) {
-                        return Center(child: Text('Error: ${snapshot.error}'));
-                      } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                        return const Center(
-                            child: Text('No categories available.'));
-                      } else {
-                        List<String> categories = snapshot.data!;
+  MyDrawer({Key? key}) : super(key: key);
 
-                        return ListView.builder(
-                          shrinkWrap: true,
-                          itemCount: categories.length,
-                          itemBuilder: (context, index) {
-                            return ListTile(
-                                title: Text(categories[index].toUpperCase()),
-                                onTap: () {});
-                          },
-                        );
-                      }
-                    },
-                  ),
-                ]));
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   getCategories();
+  // }
+
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+        child: ListView(
+            // Important: Remove any padding from the ListView.
+            padding: EdgeInsets.zero,
+            children: [
+          const UserAccountsDrawerHeader(
+            accountName: Text("John Doe"),
+            accountEmail: Text("johndoe@example.com"),
+            decoration: BoxDecoration(
+              color: Color(0xff6bbd99),
+            ),
+            currentAccountPicture: CircleAvatar(
+              backgroundColor: Colors.white,
+              child: Icon(Icons.person),
+            ),
+          ),
+          FutureBuilder<List<String>>(
+            future: getCategories(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return Center(child: CircularProgressIndicator());
+              } else if (snapshot.hasError) {
+                return Center(child: Text('Error: ${snapshot.error}'));
+              } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                return const Center(child: Text('No categories available.'));
+              } else {
+                List<String> categories = snapshot.data!;
+
+                return ListView.builder(
+                  shrinkWrap: true, //important!!
+                  itemCount: categories.length,
+                  itemBuilder: (context, index) {
+                    return ListTile(
+                        title: Text(categories[index].toUpperCase()),
+                        onTap: () {});
+                  },
+                );
+              }
+            },
+          ),
+        ]));
+  }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:product_catalog/Widgets/HomePageCarousel.dart';
 import 'package:product_catalog/Widgets/MyAppBar.dart';
 import 'package:product_catalog/Widgets/MyDrawer.dart';
 
@@ -30,25 +31,7 @@ class _HomePageState extends State<HomePage> {
           const SizedBox(
             height: 8.0,
           ),
-          CarouselSlider(
-            options: CarouselOptions(height: 350.0),
-            items: [1, 2, 3, 4, 5].map((i) {
-              return Builder(
-                builder: (BuildContext context) {
-                  return Container(
-                      width: MediaQuery.of(context).size.width,
-                      margin: EdgeInsets.symmetric(horizontal: 5.0),
-                      decoration: BoxDecoration(color: Color(0xffc4e8c2)),
-                      child: Center(
-                        child: Text(
-                          'Product $i',
-                          style: TextStyle(fontSize: 16.0),
-                        ),
-                      ));
-                },
-              );
-            }).toList(),
-          ),
+          const HomePageCarousel(),
           const SizedBox(
             height: 8.0,
           ),
