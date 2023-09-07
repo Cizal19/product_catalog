@@ -6,8 +6,6 @@ import 'package:product_catalog/Screens/ProductsPage.dart';
 
 void main() async {
   runApp(MaterialApp(
-    home: CategoryPage(),
+    home: HomePage(),
   ));
-
-  // print(dataList[0]["title"]);
 }
