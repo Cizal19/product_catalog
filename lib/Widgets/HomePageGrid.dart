@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:product_catalog/models/Product.dart';
 import 'package:product_catalog/models/products.api.dart';
-import 'dart:math';
 
 class HomePageGrid extends StatefulWidget {
   const HomePageGrid({super.key});
@@ -22,7 +21,7 @@ class _HomePageGridState extends State<HomePageGrid> {
   Future<List<Product>> getGridProducts() async {
     products = await ProductsApi.getProducts();
     // print(products);
-    gridList = products.take(6).toList();
+    gridList = products.take(10).toList();
     return gridList;
   }
 
