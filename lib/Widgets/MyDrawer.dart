@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:product_catalog/models/products.api.dart';
@@ -22,14 +23,19 @@ Future<List<String>> getCategories() async {
   return categories;
 }
 
-class MyDrawer extends Drawer {
-  MyDrawer({Key? key}) : super(key: key);
+class MyDrawer extends StatefulWidget {
+  const MyDrawer({super.key});
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   getCategories();
-  // }
+  @override
+  State<MyDrawer> createState() => _MyDrawerState();
+}
+
+class _MyDrawerState extends State<MyDrawer> {
+  @override
+  void initState() {
+    super.initState();
+    getCategories();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +76,10 @@ class MyDrawer extends Drawer {
                     itemBuilder: (context, index) {
                       return ListTile(
                           title: Text(categories[index].toUpperCase()),
-                          onTap: () {});
+                          onTap: () {
+                            Navigator.pushNamed(context, "/category",
+                                arguments: categories[index]);
+                          });
                     },
                   );
                 }
@@ -78,5 +87,6 @@ class MyDrawer extends Drawer {
             ),
           ]),
     ));
+    ;
   }
 }

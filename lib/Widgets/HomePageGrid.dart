@@ -46,12 +46,29 @@ class _HomePageGridState extends State<HomePageGrid> {
             children: gridList.map<Widget>((product) {
               return Builder(
                 builder: (BuildContext context) {
-                  return Container(
-                      width: MediaQuery.of(context).size.width,
-                      margin: EdgeInsets.symmetric(horizontal: 5.0),
-                      decoration: BoxDecoration(
-                          image: DecorationImage(
-                              image: NetworkImage(product.thumbnail))));
+                  return InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(context, "/details",
+                          arguments: Product(
+                              id: product.id,
+                              title: product.title,
+                              description: product.description,
+                              price: product.price,
+                              discountPercentage: product.discountPercentage,
+                              rating: product.rating,
+                              stock: product.stock,
+                              brand: product.brand,
+                              category: product.category,
+                              thumbnail: product.thumbnail,
+                              images: product.images));
+                    },
+                    child: Container(
+                        width: MediaQuery.of(context).size.width,
+                        margin: EdgeInsets.symmetric(horizontal: 5.0),
+                        decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image: NetworkImage(product.thumbnail)))),
+                  );
                 },
               );
             }).toList(),

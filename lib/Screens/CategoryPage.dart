@@ -16,15 +16,15 @@ class CategoryPage extends StatefulWidget {
 class _CategoryPageState extends State<CategoryPage> {
   List<Product> categoryProducts = [];
 
-  Future<List<Product>> getCategoryProducts() async {
-    @override
-    void initState() {
-      super.initState();
-      getCategoryProducts();
-    }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   getCategoryProducts(category);
+  // }
 
+  Future<List<Product>> getCategoryProducts(category) async {
     final res = await get(
-        Uri.parse("https://dummyjson.com/products/category/smartphones"));
+        Uri.parse("https://dummyjson.com/products/category/$category"));
     final data = jsonDecode(res.body);
 
     List categoryProductList = [];
@@ -39,13 +39,15 @@ class _CategoryPageState extends State<CategoryPage> {
 
   @override
   Widget build(BuildContext context) {
+    final category = ModalRoute.of(context)!.settings.arguments;
+
     return Scaffold(
       appBar: MyAppBar(
-        title: "Smartphones",
+        title: "$category".toUpperCase(),
       ),
-      drawer: MyDrawer(),
+      // drawer: MyDrawer(),
       body: FutureBuilder<List<Product>>(
-        future: getCategoryProducts(),
+        future: getCategoryProducts(category),
         builder: (context, snapshot) {
           if (snapshot.hasError) {
             return const Center(
@@ -59,7 +61,10 @@ class _CategoryPageState extends State<CategoryPage> {
                         horizontal: 4.0, vertical: 1.0),
                     child: Card(
                       child: InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.pushNamed(context, "/details",
+                              arguments: categoryProducts[index]);
+                        },
                         child: Row(
                           children: <Widget>[
                             Expanded(
@@ -107,3 +112,21 @@ class _CategoryPageState extends State<CategoryPage> {
 //                       ),
 //                     ),
 //                   ),
+
+
+
+
+// Product(
+//                                   id: categoryProducts[index].id,
+//                                   title: categoryProducts[index].title,
+//                                   description:
+//                                       categoryProducts[index].description,
+//                                   price: categoryProducts[index].price,
+//                                   discountPercentage: categoryProducts[index]
+//                                       .discountPercentage,
+//                                   rating: categoryProducts[index].rating,
+//                                   stock: categoryProducts[index].stock,
+//                                   brand: categoryProducts[index].brand,
+//                                   category: categoryProducts[index].category,
+//                                   thumbnail: categoryProducts[index].thumbnail,
+//                                   images: categoryProducts[index].images)
