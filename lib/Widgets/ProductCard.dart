@@ -88,13 +88,6 @@ class ProductCard extends StatelessWidget {
                 Text(
                   'In Stock: ${product.stock}',
                 ),
-                // Row(
-                //   mainAxisAlignment: MainAxisAlignment.center,
-                //   children: [
-                //     SizedBox(width: 0.0),
-                //
-                //   ],
-                // )
               ],
             ),
           ),

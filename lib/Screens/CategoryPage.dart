@@ -44,6 +44,7 @@ class _CategoryPageState extends State<CategoryPage> {
     return Scaffold(
       appBar: MyAppBar(
         title: "$category".toUpperCase(),
+        context: context,
       ),
       // drawer: MyDrawer(),
       body: FutureBuilder<List<Product>>(

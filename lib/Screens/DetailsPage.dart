@@ -21,6 +21,7 @@ class _DetailsPageState extends State<DetailsPage> {
       backgroundColor: Colors.grey[100],
       appBar: MyAppBar(
         title: product.title.toUpperCase(),
+        context: context,
       ),
       // drawer: MyDrawer(),
       body: Column(

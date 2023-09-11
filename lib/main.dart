@@ -10,7 +10,7 @@ void main() {
     routes: {
       '/': (context) => HomePage(),
       "/details": (context) => DetailsPage(),
-      "/category": (context) => CategoryPage()
+      "/category": (context) => CategoryPage(),
     },
   ));
 }

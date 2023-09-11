@@ -49,18 +49,19 @@ class _HomePageGridState extends State<HomePageGrid> {
                   return InkWell(
                     onTap: () {
                       Navigator.pushNamed(context, "/details",
-                          arguments: Product(
-                              id: product.id,
-                              title: product.title,
-                              description: product.description,
-                              price: product.price,
-                              discountPercentage: product.discountPercentage,
-                              rating: product.rating,
-                              stock: product.stock,
-                              brand: product.brand,
-                              category: product.category,
-                              thumbnail: product.thumbnail,
-                              images: product.images));
+                          arguments: product);
+                      // arguments: Product(
+                      //     id: product.id,
+                      //     title: product.title,
+                      //     description: product.description,
+                      //     price: product.price,
+                      //     discountPercentage: product.discountPercentage,
+                      //     rating: product.rating,
+                      //     stock: product.stock,
+                      //     brand: product.brand,
+                      //     category: product.category,
+                      //     thumbnail: product.thumbnail,
+                      //     images: product.images));
                     },
                     child: Card(
                       color: Color.fromARGB(251, 255, 255, 255),

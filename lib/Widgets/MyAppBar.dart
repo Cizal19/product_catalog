@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:product_catalog/Widgets/CustomSearchDelegate.dart';
 
 class MyAppBar extends AppBar {
   MyAppBar({
@@ -8,6 +9,7 @@ class MyAppBar extends AppBar {
     IconThemeData? iconTheme,
     String? title,
     List<Widget>? actions,
+    required BuildContext context,
   }) : super(
           key: key,
           title: Text(
@@ -25,7 +27,10 @@ class MyAppBar extends AppBar {
                     size: 30.0,
                   ),
                   onPressed: () {
-                    // do something
+                    showSearch(
+                        context: context,
+                        // delegate to customize the search bar
+                        delegate: CustomSearchDelegate());
                   },
                 )
               ],
