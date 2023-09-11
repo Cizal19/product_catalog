@@ -19,13 +19,34 @@ class ProductCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  product.title,
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: 1.5,
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      product.title,
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 1.5,
+                      ),
+                    ),
+                    ElevatedButton.icon(
+                        style: ButtonStyle(
+                            iconSize: MaterialStatePropertyAll<double>(25.0),
+                            iconColor:
+                                MaterialStatePropertyAll<Color>(Colors.white),
+                            backgroundColor: MaterialStatePropertyAll<Color>(
+                                Color(0xff46a094))),
+                        onPressed: () {},
+                        icon: Icon(
+                          Icons.favorite_border,
+                          weight: 2.0,
+                        ),
+                        label: Text(
+                          "Like",
+                          style: TextStyle(fontSize: 20.0, color: Colors.white),
+                        ))
+                  ],
                 ),
                 SizedBox(height: 8),
                 Text(
@@ -67,29 +88,13 @@ class ProductCard extends StatelessWidget {
                 Text(
                   'In Stock: ${product.stock}',
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(width: 0.0),
-                    ElevatedButton.icon(
-                        style: ButtonStyle(
-                            iconSize: MaterialStatePropertyAll<double>(25.0),
-                            iconColor:
-                                MaterialStatePropertyAll<Color>(Colors.red),
-                            backgroundColor: MaterialStatePropertyAll<Color>(
-                                Color(0xffc4e8c2))),
-                        onPressed: () {},
-                        icon: Icon(
-                          Icons.favorite_border,
-                          weight: 2.0,
-                        ),
-                        label: Text(
-                          "Like",
-                          style: TextStyle(
-                              fontSize: 20.0, color: Colors.redAccent),
-                        ))
-                  ],
-                )
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.center,
+                //   children: [
+                //     SizedBox(width: 0.0),
+                //
+                //   ],
+                // )
               ],
             ),
           ),

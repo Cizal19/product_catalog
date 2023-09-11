@@ -16,6 +16,18 @@ class MyAppBar extends AppBar {
           ),
           backgroundColor: backgroundColor ?? Color(0xff46a094),
           iconTheme: iconTheme ?? IconThemeData(color: Colors.white),
-          actions: actions,
+          actions: actions ??
+              <Widget>[
+                IconButton(
+                  icon: Icon(
+                    Icons.search_outlined,
+                    color: Colors.white,
+                    size: 30.0,
+                  ),
+                  onPressed: () {
+                    // do something
+                  },
+                )
+              ],
         );
 }
