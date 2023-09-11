@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:product_catalog/Widgets/MyAppBar.dart';
 import 'package:product_catalog/Widgets/MyDrawer.dart';
+import 'package:product_catalog/Widgets/ProductCard.dart';
 import 'package:product_catalog/models/Product.dart';
 
 class DetailsPage extends StatefulWidget {
@@ -38,63 +39,10 @@ class _DetailsPageState extends State<DetailsPage> {
                   },
                 );
               }).toList()),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Text(
-                product.brand.toUpperCase(),
-                style: TextStyle(letterSpacing: 2.0, color: Colors.grey[700]),
-              ),
-              Text(
-                product.title.toUpperCase(),
-                style: TextStyle(fontSize: 20.0, letterSpacing: 2.0),
-              ),
-              Text(
-                "\$${product.price.toString()}",
-                style: TextStyle(
-                    fontSize: 20.0,
-                    letterSpacing: 2.0,
-                    color: Colors.redAccent),
-              ),
-            ],
-          ),
           SizedBox(
-            height: 10.0,
+            height: 30.0,
           ),
-          Text(
-            product.description,
-            // style: TextStyle(letterSpacing: 2.0),
-          ),
-          SizedBox(
-            height: 10.0,
-          ),
-          Row(
-            children: [
-              SizedBox(
-                width: 55.0,
-              ),
-              Row(
-                children: [
-                  Icon(Icons.star, color: Colors.yellow),
-                  SizedBox(
-                    width: 2.0,
-                  ),
-                  Text(
-                    product.rating.toString(),
-                    style:
-                        TextStyle(letterSpacing: 2.0, color: Colors.grey[700]),
-                  ),
-                ],
-              ),
-              SizedBox(
-                width: 180.0,
-              ),
-              Text(
-                "Stock: ${product.stock.toString()}",
-                style: TextStyle(letterSpacing: 2.0),
-              ),
-            ],
-          ),
+          ProductCard(product: product),
         ],
       ),
     );

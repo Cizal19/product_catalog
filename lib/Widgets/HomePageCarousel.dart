@@ -37,7 +37,12 @@ class _HomePageCarouselState extends State<HomePageCarousel> {
           );
         } else if (snapshot.hasData) {
           return CarouselSlider(
-            options: CarouselOptions(height: 350.0),
+            options: CarouselOptions(
+              height: 350.0,
+              autoPlay: true,
+              autoPlayInterval: const Duration(seconds: 4),
+              autoPlayAnimationDuration: const Duration(milliseconds: 800),
+            ),
             items: carouselList.map<Widget>((product) {
               return Builder(
                 builder: (BuildContext context) {

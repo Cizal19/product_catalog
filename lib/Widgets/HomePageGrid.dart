@@ -62,12 +62,18 @@ class _HomePageGridState extends State<HomePageGrid> {
                               thumbnail: product.thumbnail,
                               images: product.images));
                     },
-                    child: Container(
-                        width: MediaQuery.of(context).size.width,
-                        margin: EdgeInsets.symmetric(horizontal: 5.0),
-                        decoration: BoxDecoration(
-                            image: DecorationImage(
-                                image: NetworkImage(product.thumbnail)))),
+                    child: Card(
+                      color: Color.fromARGB(251, 255, 255, 255),
+                      elevation: 5.0,
+                      child: Container(
+                          width: MediaQuery.of(context).size.width,
+                          margin: const EdgeInsets.symmetric(
+                              horizontal: 5.0, vertical: 5.0),
+                          decoration: BoxDecoration(
+                              image: DecorationImage(
+                                  image: NetworkImage(product.thumbnail),
+                                  fit: BoxFit.fitHeight))),
+                    ),
                   );
                 },
               );
