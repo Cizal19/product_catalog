@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:product_catalog/Widgets/CategoryRail.dart';
 import 'package:product_catalog/Widgets/HomePageCarousel.dart';
 import 'package:product_catalog/Widgets/HomePageGrid.dart';
 import 'package:product_catalog/Widgets/MyAppBar.dart';
@@ -36,6 +37,15 @@ class _HomePageState extends State<HomePage> {
             height: 8.0,
           ),
           const HomePageCarousel(),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              "Categories".toUpperCase(),
+              style: TextStyle(
+                  color: Colors.grey[700], fontSize: 20.0, letterSpacing: 2.0),
+            ),
+          ),
+          CategoryRail(),
           const SizedBox(
             height: 8.0,
           ),

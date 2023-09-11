@@ -19,15 +19,22 @@ class ProductCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                Text(
+                  product.title,
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 1.5,
+                  ),
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      product.title,
+                      '${product.brand}'.toUpperCase(),
                       style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        letterSpacing: 1.5,
+                        letterSpacing: 2.0,
+                        color: Colors.grey[600],
                       ),
                     ),
                     ElevatedButton.icon(
@@ -49,13 +56,6 @@ class ProductCard extends StatelessWidget {
                   ],
                 ),
                 SizedBox(height: 8),
-                Text(
-                  '${product.brand}'.toUpperCase(),
-                  style: TextStyle(
-                    letterSpacing: 2.0,
-                    color: Colors.grey[600],
-                  ),
-                ),
                 SizedBox(height: 8),
                 Text(
                   '\$${product.price}',
