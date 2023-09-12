@@ -72,7 +72,14 @@ class CustomSearchDelegate extends SearchDelegate {
   // third overwrite to show query result
   @override
   Widget buildResults(BuildContext context) {
-    if (query.isEmpty) return Container();
+    if (query.isEmpty)
+      return Center(
+          child: Text(
+        "Please enter a query!",
+        style: TextStyle(
+          color: Colors.grey[600],
+        ),
+      ));
 
     return FutureBuilder<List<Product>>(
       future: getSearchProducts(query),

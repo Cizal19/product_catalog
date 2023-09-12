@@ -42,6 +42,8 @@ class _HomePageCarouselState extends State<HomePageCarousel> {
               autoPlay: true,
               autoPlayInterval: const Duration(seconds: 4),
               autoPlayAnimationDuration: const Duration(milliseconds: 800),
+              aspectRatio: 16 / 9,
+              viewportFraction: 0.9,
             ),
             items: carouselList.map<Widget>((product) {
               return Builder(
@@ -50,18 +52,6 @@ class _HomePageCarouselState extends State<HomePageCarousel> {
                     onTap: () {
                       Navigator.pushNamed(context, "/details",
                           arguments: product);
-                      // arguments: Product(
-                      //     id: product.id,
-                      //     title: product.title,
-                      //     description: product.description,
-                      //     price: product.price,
-                      //     discountPercentage: product.discountPercentage,
-                      //     rating: product.rating,
-                      //     stock: product.stock,
-                      //     brand: product.brand,
-                      //     category: product.category,
-                      //     thumbnail: product.thumbnail,
-                      //     images: product.images));
                     },
                     child: Container(
                         width: MediaQuery.of(context).size.width,

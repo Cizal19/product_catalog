@@ -6,6 +6,8 @@ class CategoryRail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      color: Colors.white,
+      elevation: 4.0,
       borderOnForeground: true,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,

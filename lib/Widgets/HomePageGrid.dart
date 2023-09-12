@@ -50,30 +50,38 @@ class _HomePageGridState extends State<HomePageGrid> {
                     onTap: () {
                       Navigator.pushNamed(context, "/details",
                           arguments: product);
-                      // arguments: Product(
-                      //     id: product.id,
-                      //     title: product.title,
-                      //     description: product.description,
-                      //     price: product.price,
-                      //     discountPercentage: product.discountPercentage,
-                      //     rating: product.rating,
-                      //     stock: product.stock,
-                      //     brand: product.brand,
-                      //     category: product.category,
-                      //     thumbnail: product.thumbnail,
-                      //     images: product.images));
                     },
                     child: Card(
-                      color: Color.fromARGB(251, 255, 255, 255),
+                      color: Colors.white,
                       elevation: 5.0,
                       child: Container(
-                          width: MediaQuery.of(context).size.width,
-                          margin: const EdgeInsets.symmetric(
-                              horizontal: 5.0, vertical: 5.0),
-                          decoration: BoxDecoration(
-                              image: DecorationImage(
-                                  image: NetworkImage(product.thumbnail),
-                                  fit: BoxFit.fitHeight))),
+                        width: MediaQuery.of(context).size.width,
+                        margin: const EdgeInsets.symmetric(
+                            horizontal: 5.0, vertical: 5.0),
+                        decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image: NetworkImage(product.thumbnail),
+                                fit: BoxFit.fitHeight)),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              color: Colors.black.withOpacity(
+                                  0.5), // Add a semi-transparent background
+                              padding: EdgeInsets.all(8.0),
+                              child: Text(
+                                product.title,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 16.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
                   );
                 },
