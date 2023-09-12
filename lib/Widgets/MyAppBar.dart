@@ -14,14 +14,14 @@ class MyAppBar extends AppBar {
           key: key,
           title: Text(
             title ?? '',
-            style: textStyle ?? TextStyle(color: Colors.white),
+            style: textStyle ?? const TextStyle(color: Colors.white),
           ),
-          backgroundColor: backgroundColor ?? Color(0xff46a094),
-          iconTheme: iconTheme ?? IconThemeData(color: Colors.white),
+          backgroundColor: backgroundColor ?? const Color(0xff46a094),
+          iconTheme: iconTheme ?? const IconThemeData(color: Colors.white),
           actions: actions ??
               <Widget>[
                 IconButton(
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.search_outlined,
                     color: Colors.white,
                     size: 30.0,

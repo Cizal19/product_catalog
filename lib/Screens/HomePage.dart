@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:product_catalog/Widgets/CategoryRail.dart';
 import 'package:product_catalog/Widgets/HomePageCarousel.dart';
 import 'package:product_catalog/Widgets/HomePageGrid.dart';
@@ -22,7 +21,7 @@ class _HomePageState extends State<HomePage> {
         title: "Product Catalog",
         context: context,
       ),
-      drawer: MyDrawer(),
+      drawer: const MyDrawer(),
       body: SingleChildScrollView(
         child: Column(children: [
           Padding(
@@ -45,7 +44,7 @@ class _HomePageState extends State<HomePage> {
                   color: Colors.grey[700], fontSize: 20.0, letterSpacing: 2.0),
             ),
           ),
-          CategoryRail(),
+          const CategoryRail(),
           const SizedBox(
             height: 8.0,
           ),
@@ -58,7 +57,7 @@ class _HomePageState extends State<HomePage> {
                   Icons.star,
                   color: Color(0xffffd700),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 2.0,
                 ),
                 Text(

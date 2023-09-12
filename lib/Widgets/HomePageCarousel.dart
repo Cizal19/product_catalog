@@ -21,7 +21,6 @@ class _HomePageCarouselState extends State<HomePageCarousel> {
 
   Future<List<Product>> getCarouselProducts() async {
     products = await ProductsApi.getProducts();
-    // print(products);
     carouselList = products.take(5).toList();
     return carouselList;
   }
@@ -55,7 +54,7 @@ class _HomePageCarouselState extends State<HomePageCarousel> {
                     },
                     child: Container(
                         width: MediaQuery.of(context).size.width,
-                        margin: EdgeInsets.symmetric(horizontal: 5.0),
+                        margin: const EdgeInsets.symmetric(horizontal: 5.0),
                         decoration: BoxDecoration(
                             image: DecorationImage(
                                 image: NetworkImage(product.thumbnail)))),

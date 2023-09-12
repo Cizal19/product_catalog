@@ -1,16 +1,9 @@
-import 'dart:convert';
-
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
 import 'package:product_catalog/models/products.api.dart';
 
 Future<List<String>> getCategories() async {
   List productList = await ProductsApi.getProducts();
-  // final res = await get(Uri.parse("https://dummyjson.com/products/categories"));
-  // final data = jsonDecode(res.body);
 
-  // List<String> categories = data.cast<String>();
   List<String> categories = [];
   for (var product in productList) {
     String category = product.category;
@@ -18,7 +11,7 @@ Future<List<String>> getCategories() async {
       categories.add(category);
     }
   }
-  // print(categories);
+
   return categories;
 }
 
@@ -60,7 +53,7 @@ class _MyDrawerState extends State<MyDrawer> {
               future: getCategories(),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Center(child: CircularProgressIndicator());
+                  return const Center(child: CircularProgressIndicator());
                 } else if (snapshot.hasError) {
                   return Center(child: Text('Error: ${snapshot.error}'));
                 } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
@@ -86,6 +79,5 @@ class _MyDrawerState extends State<MyDrawer> {
             ),
           ]),
     ));
-    ;
   }
 }

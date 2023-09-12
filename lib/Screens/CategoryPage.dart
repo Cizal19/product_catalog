@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:product_catalog/Widgets/MyAppBar.dart';
-import 'package:product_catalog/Widgets/MyDrawer.dart';
+
 import 'package:product_catalog/models/Product.dart';
 
 class CategoryPage extends StatefulWidget {
@@ -15,12 +15,6 @@ class CategoryPage extends StatefulWidget {
 
 class _CategoryPageState extends State<CategoryPage> {
   List<Product> categoryProducts = [];
-
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   getCategoryProducts(category);
-  // }
 
   Future<List<Product>> getCategoryProducts(category) async {
     final res = await get(
@@ -46,7 +40,6 @@ class _CategoryPageState extends State<CategoryPage> {
         title: "$category".toUpperCase(),
         context: context,
       ),
-      // drawer: MyDrawer(),
       body: FutureBuilder<List<Product>>(
         future: getCategoryProducts(category),
         builder: (context, snapshot) {
@@ -99,35 +92,3 @@ class _CategoryPageState extends State<CategoryPage> {
     );
   }
 }
-
-
-// Card(
-//                     child: ListTile(
-//                       onTap: () {},
-//                       // title: Text(products[index]["title"]),
-//                       title: Text(categoryProducts[index].title),
-//                       leading: CircleAvatar(
-//                         radius: 70.0,
-//                         backgroundImage:
-//                             NetworkImage(categoryProducts[index].thumbnail),
-//                       ),
-//                     ),
-//                   ),
-
-
-
-
-// Product(
-//                                   id: categoryProducts[index].id,
-//                                   title: categoryProducts[index].title,
-//                                   description:
-//                                       categoryProducts[index].description,
-//                                   price: categoryProducts[index].price,
-//                                   discountPercentage: categoryProducts[index]
-//                                       .discountPercentage,
-//                                   rating: categoryProducts[index].rating,
-//                                   stock: categoryProducts[index].stock,
-//                                   brand: categoryProducts[index].brand,
-//                                   category: categoryProducts[index].category,
-//                                   thumbnail: categoryProducts[index].thumbnail,
-//                                   images: categoryProducts[index].images)

@@ -20,7 +20,6 @@ class CustomSearchDelegate extends SearchDelegate {
 
     searchProducts = Product.productsFromSnapshot(searchProductList);
 
-    // print(searchProducts);
     return searchProducts;
   }
 
@@ -28,10 +27,10 @@ class CustomSearchDelegate extends SearchDelegate {
   ThemeData appBarTheme(BuildContext context) {
     return Theme.of(context).copyWith(
         hintColor: Colors.white,
-        appBarTheme: AppBarTheme(
+        appBarTheme: const AppBarTheme(
           color: Color(0xff46a094),
         ),
-        textTheme: TextTheme(
+        textTheme: const TextTheme(
           titleMedium: TextStyle(
             color: Colors.white,
             fontSize: 20.0,
@@ -46,7 +45,7 @@ class CustomSearchDelegate extends SearchDelegate {
         onPressed: () {
           query = '';
         },
-        icon: Icon(
+        icon: const Icon(
           Icons.clear,
           color: Colors.white,
         ),
@@ -61,7 +60,7 @@ class CustomSearchDelegate extends SearchDelegate {
       onPressed: () {
         close(context, null);
       },
-      icon: Icon(
+      icon: const Icon(
         Icons.keyboard_arrow_left_outlined,
         size: 30.0,
         color: Colors.white,
@@ -72,7 +71,7 @@ class CustomSearchDelegate extends SearchDelegate {
   // third overwrite to show query result
   @override
   Widget buildResults(BuildContext context) {
-    if (query.isEmpty)
+    if (query.isEmpty) {
       return Center(
           child: Text(
         "Please enter a query!",
@@ -80,6 +79,7 @@ class CustomSearchDelegate extends SearchDelegate {
           color: Colors.grey[600],
         ),
       ));
+    }
 
     return FutureBuilder<List<Product>>(
       future: getSearchProducts(query),

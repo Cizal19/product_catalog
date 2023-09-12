@@ -1,7 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:product_catalog/Widgets/MyAppBar.dart';
-import 'package:product_catalog/Widgets/MyDrawer.dart';
 import 'package:product_catalog/Widgets/ProductCard.dart';
 import 'package:product_catalog/models/Product.dart';
 
@@ -23,7 +22,6 @@ class _DetailsPageState extends State<DetailsPage> {
         title: product.title.toUpperCase(),
         context: context,
       ),
-      // drawer: MyDrawer(),
       body: Column(
         children: [
           CarouselSlider(
@@ -33,14 +31,14 @@ class _DetailsPageState extends State<DetailsPage> {
                   builder: (BuildContext context) {
                     return Container(
                       width: MediaQuery.of(context).size.width,
-                      margin: EdgeInsets.symmetric(horizontal: 5.0),
+                      margin: const EdgeInsets.symmetric(horizontal: 5.0),
                       decoration: BoxDecoration(
                           image: DecorationImage(image: NetworkImage(image))),
                     );
                   },
                 );
               }).toList()),
-          SizedBox(
+          const SizedBox(
             height: 30.0,
           ),
           ProductCard(product: product),

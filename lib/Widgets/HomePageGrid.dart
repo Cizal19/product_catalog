@@ -20,7 +20,7 @@ class _HomePageGridState extends State<HomePageGrid> {
 
   Future<List<Product>> getGridProducts() async {
     products = await ProductsApi.getProducts();
-    // print(products);
+
     gridList = products.take(10).toList();
     return gridList;
   }
@@ -41,7 +41,6 @@ class _HomePageGridState extends State<HomePageGrid> {
             crossAxisSpacing: 10,
             mainAxisSpacing: 10,
             crossAxisCount: 2,
-            // scrollDirection: Axis.horizontal,
             shrinkWrap: true,
             children: gridList.map<Widget>((product) {
               return Builder(
@@ -69,10 +68,10 @@ class _HomePageGridState extends State<HomePageGrid> {
                             Container(
                               color: Colors.black.withOpacity(
                                   0.5), // Add a semi-transparent background
-                              padding: EdgeInsets.all(8.0),
+                              padding: const EdgeInsets.all(8.0),
                               child: Text(
                                 product.title,
-                                style: TextStyle(
+                                style: const TextStyle(
                                   color: Colors.white,
                                   fontSize: 16.0,
                                   fontWeight: FontWeight.bold,
