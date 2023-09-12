@@ -89,6 +89,18 @@ class CustomSearchDelegate extends SearchDelegate {
             child: Text('An error has occurred!'),
           );
         } else if (snapshot.hasData) {
+          List<Product> searchProducts = snapshot.data!;
+          if (searchProducts.isEmpty) {
+            // No results found
+            return Center(
+              child: Text(
+                'No results for your search query.',
+                style: TextStyle(
+                  color: Colors.grey[600],
+                ),
+              ),
+            );
+          }
           return ListView.builder(
             itemBuilder: (context, index) {
               return Padding(

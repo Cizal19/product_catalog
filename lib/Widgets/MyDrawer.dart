@@ -19,7 +19,6 @@ Future<List<String>> getCategories() async {
     }
   }
   // print(categories);
-  // return categories;
   return categories;
 }
 
