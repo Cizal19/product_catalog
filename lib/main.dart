@@ -9,7 +9,7 @@ void main() {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
     routes: {
-      // '/': (context) => const HomePage(),
+      '/homepage': (context) => const HomePage(),
       '/': (context) => const RegisterPage(),
       '/register': (context) => RegisterPage(),
       '/login': (context) => LoginPage(),

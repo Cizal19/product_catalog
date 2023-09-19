@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:product_catalog/models/User.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -8,11 +9,15 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final _formKey = GlobalKey<FormState>();
+
+  User user = User("", "", "", "");
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xff46a094),
       body: Form(
+        key: _formKey,
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(30.0),
           child: Column(
@@ -29,6 +34,16 @@ class _LoginPageState extends State<LoginPage> {
               ),
               const SizedBox(height: 60),
               TextFormField(
+                controller: TextEditingController(text: user.userName),
+                onChanged: (value) {
+                  user.userName = value;
+                },
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "Please enter Username";
+                  }
+                  return null;
+                },
                 keyboardType: TextInputType.name,
                 decoration: InputDecoration(
                   labelText: "Username",
@@ -43,15 +58,20 @@ class _LoginPageState extends State<LoginPage> {
               ),
               const SizedBox(height: 10),
               TextFormField(
-                keyboardType: TextInputType.visiblePassword,
+                controller: TextEditingController(text: user.password),
+                onChanged: (value) {
+                  user.password = value;
+                },
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "Please enter Password";
+                  }
+                  return null;
+                },
+                obscureText: true,
                 decoration: InputDecoration(
                   labelText: "Password",
                   prefixIcon: const Icon(Icons.password_outlined),
-                  // suffixIcon: IconButton(
-                  //     onPressed: () {},
-                  //     icon: true
-                  //         ? const Icon(Icons.visibility_outlined)
-                  //         : const Icon(Icons.visibility_off_outlined)),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
@@ -70,7 +90,14 @@ class _LoginPageState extends State<LoginPage> {
                         borderRadius: BorderRadius.circular(20),
                       ),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        print("ok");
+                        Navigator.popAndPushNamed(context, "/homepage");
+                      } else {
+                        print("not ok");
+                      }
+                    },
                     child: const Text("Login"),
                   ),
                   Row(

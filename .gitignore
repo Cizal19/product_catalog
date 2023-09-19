@@ -45,3 +45,6 @@ app.*.map.json
 
 # Node modules
 /server/node_modules
+
+# REST requests
+/server/requests.rest

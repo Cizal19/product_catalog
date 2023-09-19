@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:product_catalog/models/User.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -9,6 +10,7 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
   final _formKey = GlobalKey<FormState>();
+  User user = User("", "", "", "");
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,6 +33,16 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
               const SizedBox(height: 35),
               TextFormField(
+                controller: TextEditingController(text: user.userName),
+                onChanged: (value) {
+                  user.userName = value;
+                },
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "Please enter Username";
+                  }
+                  return null;
+                },
                 keyboardType: TextInputType.name,
                 decoration: InputDecoration(
                   helperStyle: const TextStyle(color: Colors.white),
@@ -46,6 +58,21 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
               const SizedBox(height: 10),
               TextFormField(
+                controller: TextEditingController(text: user.email),
+                onChanged: (value) {
+                  user.email = value;
+                },
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "Please enter Email";
+                  } else if (RegExp(
+                          r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                      .hasMatch(value)) {
+                    return null;
+                  } else {
+                    return "Please enter valid email";
+                  }
+                },
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
                   labelText: "Email",
@@ -57,18 +84,20 @@ class _RegisterPageState extends State<RegisterPage> {
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
-                validator: (String? value) {
-                  if (value == null || value.isEmpty) {
-                    return "Please enter email.";
-                  } else if (!(value.contains('@') && value.contains('.'))) {
-                    return "Invalid email";
-                  }
-                  return null;
-                },
               ),
               const SizedBox(height: 10),
               TextFormField(
-                keyboardType: TextInputType.visiblePassword,
+                controller: TextEditingController(text: user.password),
+                onChanged: (value) {
+                  user.password = value;
+                },
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "Please enter Password";
+                  }
+                  return null;
+                },
+                obscureText: true,
                 decoration: InputDecoration(
                   labelText: "Password",
                   prefixIcon: const Icon(Icons.password_outlined),
@@ -82,7 +111,19 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
               const SizedBox(height: 10),
               TextFormField(
-                keyboardType: TextInputType.visiblePassword,
+                controller: TextEditingController(text: user.confirmPassword),
+                onChanged: (value) {
+                  user.confirmPassword = value;
+                },
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "Please enter Confirm Password";
+                  } else if (user.password != user.confirmPassword) {
+                    return "Password and Confirm Password do not match";
+                  }
+                  return null;
+                },
+                obscureText: true,
                 decoration: InputDecoration(
                   labelText: "Confirm Password",
                   prefixIcon: const Icon(Icons.password_outlined),
@@ -105,7 +146,12 @@ class _RegisterPageState extends State<RegisterPage> {
                       ),
                     ),
                     onPressed: () {
-                      Navigator.pushNamed(context, "/login");
+                      if (_formKey.currentState!.validate()) {
+                        print("ok");
+                        Navigator.popAndPushNamed(context, "/login");
+                      } else {
+                        print("not ok");
+                      }
                     },
                     child: const Text(
                       "Register",
@@ -117,7 +163,8 @@ class _RegisterPageState extends State<RegisterPage> {
                     children: [
                       const Text("Already have an account?"),
                       TextButton(
-                        onPressed: () => Navigator.pop(context),
+                        onPressed: () =>
+                            Navigator.popAndPushNamed(context, "/login"),
                         child: const Text(
                           "Login",
                         ),
