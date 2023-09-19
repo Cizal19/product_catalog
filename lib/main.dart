@@ -7,6 +7,7 @@ import 'package:product_catalog/Screens/RegisterPage.dart';
 
 void main() {
   runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
     routes: {
       // '/': (context) => const HomePage(),
       '/': (context) => const RegisterPage(),
