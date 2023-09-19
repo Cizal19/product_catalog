@@ -3,7 +3,7 @@ const dotenv = require("dotenv").config;
 const cors = require("cors");
 const {mongoose} = require("mongoose");
 // const { MONGO_URL } = process.env; 
-
+const app = express();
 
 //database connection
 mongoose
@@ -11,7 +11,9 @@ mongoose
   .then(() => console.log("Connected to the database"))
   .catch((err) => console.log("Connection to database failed", err))
 
-const app = express();
+
+// middleware
+app.use(express.json())
 
 app.use("/", require("./routes/authRoutes"));
 
