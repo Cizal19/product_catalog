@@ -48,3 +48,6 @@ app.*.map.json
 
 # REST requests
 /server/requests.rest
+
+# .env
+/server/.env

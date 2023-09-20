@@ -16,5 +16,13 @@ void main() {
       "/details": (context) => const DetailsPage(),
       "/category": (context) => const CategoryPage(),
     },
+    theme: ThemeData(
+      primaryTextTheme: TextTheme(
+          headlineLarge: TextStyle(
+        color: Colors.white,
+      )),
+      textTheme: TextTheme(bodyMedium: TextStyle(color: Colors.white)),
+      // textButtonTheme: TextButtonThemeData(style: ButtonStyle())
+    ),
   ));
 }

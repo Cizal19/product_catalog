@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:product_catalog/models/User.dart';
+import 'package:http/http.dart' as http;
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -10,6 +11,21 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
   final _formKey = GlobalKey<FormState>();
+  Future save() async {
+    var res = await http.post(Uri.parse("http://localhost:8000/register"),
+        headers: <String, String>{
+          'Context-Type': 'application/json;charSet=UTF-8'
+        },
+        body: <String, String>{
+          'userName': user.userName,
+          'email': user.email,
+          'password': user.password,
+          'confirmPassword': user.confirmPassword
+        });
+    print(res.body);
+    Navigator.popAndPushNamed(context, "/login");
+  }
+
   User user = User("", "", "", "");
   @override
   Widget build(BuildContext context) {
@@ -148,7 +164,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
                         print("ok");
-                        Navigator.popAndPushNamed(context, "/login");
+                        save();
                       } else {
                         print("not ok");
                       }

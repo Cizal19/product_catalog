@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:product_catalog/models/User.dart';
+import 'package:http/http.dart' as http;
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -10,6 +11,18 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
+  Future save() async {
+    var res = await http.post(Uri.parse("http://localhost:8000/login"),
+        headers: <String, String>{
+          'Context-Type': 'application/json;charSet=UTF-8'
+        },
+        body: <String, String>{
+          'email': user.email,
+          'password': user.password
+        });
+    print(res.body);
+    Navigator.popAndPushNamed(context, "/homepage");
+  }
 
   User user = User("", "", "", "");
   @override
@@ -25,7 +38,7 @@ class _LoginPageState extends State<LoginPage> {
               const SizedBox(height: 150),
               Text(
                 "Welcome back",
-                style: Theme.of(context).textTheme.headlineLarge,
+                style: Theme.of(context).primaryTextTheme.headlineLarge,
               ),
               const SizedBox(height: 10),
               Text(
@@ -93,7 +106,7 @@ class _LoginPageState extends State<LoginPage> {
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
                         print("ok");
-                        Navigator.popAndPushNamed(context, "/homepage");
+                        save();
                       } else {
                         print("not ok");
                       }
@@ -105,7 +118,9 @@ class _LoginPageState extends State<LoginPage> {
                     children: [
                       const Text("Don't have an account?"),
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.popAndPushNamed(context, "/register");
+                        },
                         child: const Text("Signup"),
                       ),
                     ],
