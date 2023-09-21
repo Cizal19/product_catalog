@@ -72,7 +72,7 @@ const loginUser = async (req, res) => {
     // Check if user exists
     const user = await User.findOne({ userName });
     if (!user) {
-      return res.status(404).json({ error: "No user found" }); // 404 status for not found
+      return res.status(404).json({ error: "User not found" }); // 404 status for not found
     }
 
     // Check if password matches
