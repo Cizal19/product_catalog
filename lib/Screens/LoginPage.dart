@@ -74,9 +74,16 @@ class _LoginPageState extends State<LoginPage> {
             'userName': user.userName,
             'password': user.password
           });
-      print(res.body);
-      // showSuccessToast("Successfully Logged In");
-      // Navigator.popAndPushNamed(context, "/homepage");
+      // print(res.body);
+      final decodedResponse = json.decode(res.body);
+      if (res.statusCode == 200) {
+        // The request was successful (status code 200)
+        showSuccessToast("Successfully Logged In");
+        Navigator.popAndPushNamed(context, "/homepage");
+      } else {
+        // Handle error status codes as needed
+        showErrorToast(decodedResponse["error"]);
+      }
     } catch (error) {
       print(error);
     }
