@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:product_catalog/models/User.dart';
 import 'package:http/http.dart' as http;
 
@@ -11,26 +14,80 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
   final _formKey = GlobalKey<FormState>();
+
+  FToast? successToast;
+  FToast? errorToast;
+
+  showSuccessToast(String message) {
+    Widget toast = Container(
+      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(25.0),
+        color: Colors.green,
+      ),
+      child: Text(
+        message,
+        style: TextStyle(color: Colors.white),
+      ),
+    );
+
+    successToast?.showToast(
+      child: toast,
+      toastDuration: const Duration(seconds: 3),
+    );
+  }
+
+  showErrorToast(String message) {
+    Widget toast = Container(
+      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(25.0),
+        color: Colors.red,
+      ),
+      child: Text(
+        message,
+        style: TextStyle(color: Colors.white),
+      ),
+    );
+
+    errorToast?.showToast(
+      child: toast,
+      toastDuration: const Duration(seconds: 3),
+    );
+  }
+
   Future save() async {
-    var res = await http.post(Uri.parse("http://localhost:8000/register"),
-        headers: <String, String>{
-          'Context-Type': 'application/json;charSet=UTF-8'
-        },
-        body: <String, String>{
-          'userName': user.userName,
-          'email': user.email,
-          'password': user.password,
-          'confirmPassword': user.confirmPassword
-        });
-    print(res.body);
-    Navigator.popAndPushNamed(context, "/login");
+    try {
+      var res = await http.post(Uri.parse("http://localhost:8000/register"),
+          headers: <String, String>{
+            'Context-Type': 'application/json;charSet=UTF-8'
+          },
+          body: <String, String>{
+            'userName': user.userName,
+            'email': user.email,
+            'password': user.password,
+            'confirmPassword': user.confirmPassword
+          });
+      // print(res.body);
+      final decodedResponse = json.decode(res.body);
+      if (res.statusCode == 201) {
+        // The request was successful (status code 200)
+        showSuccessToast("User Created Successfully");
+        Navigator.popAndPushNamed(context, "/");
+      } else {
+        // Handle error status codes as needed
+        showErrorToast(decodedResponse["error"]);
+      }
+    } catch (error) {
+      print(error);
+    }
   }
 
   User user = User("", "", "", "");
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff46a094),
+      backgroundColor: Colors.white,
       body: Form(
         key: _formKey,
         child: SingleChildScrollView(
