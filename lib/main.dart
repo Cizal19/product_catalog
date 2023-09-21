@@ -10,18 +10,17 @@ void main() {
     debugShowCheckedModeBanner: false,
     routes: {
       '/homepage': (context) => const HomePage(),
-      '/': (context) => const RegisterPage(),
       '/register': (context) => RegisterPage(),
-      '/login': (context) => LoginPage(),
+      '/': (context) => LoginPage(),
       "/details": (context) => const DetailsPage(),
       "/category": (context) => const CategoryPage(),
     },
     theme: ThemeData(
       primaryTextTheme: TextTheme(
           headlineLarge: TextStyle(
-        color: Colors.white,
+        color: Color(0xff46a094),
       )),
-      textTheme: TextTheme(bodyMedium: TextStyle(color: Colors.white)),
+      textTheme: TextTheme(bodyMedium: TextStyle(color: Color(0xff46a094))),
       // textButtonTheme: TextButtonThemeData(style: ButtonStyle())
     ),
   ));

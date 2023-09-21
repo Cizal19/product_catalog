@@ -180,7 +180,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       const Text("Already have an account?"),
                       TextButton(
                         onPressed: () =>
-                            Navigator.popAndPushNamed(context, "/login"),
+                            Navigator.popAndPushNamed(context, "/"),
                         child: const Text(
                           "Login",
                         ),
