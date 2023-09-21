@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:product_catalog/models/User.dart';
 import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -11,24 +13,80 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
+
+  FToast? successToast;
+  FToast? errorToast;
+
+  showSuccessToast(String message) {
+    Widget toast = Container(
+      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(25.0),
+        color: Colors.green,
+      ),
+      child: Text(
+        message,
+        style: TextStyle(color: Colors.white),
+      ),
+    );
+
+    successToast?.showToast(
+      child: toast,
+      toastDuration: const Duration(seconds: 3),
+    );
+  }
+
+  showErrorToast(String message) {
+    Widget toast = Container(
+      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(25.0),
+        color: Colors.red,
+      ),
+      child: Text(
+        message,
+        style: TextStyle(color: Colors.white),
+      ),
+    );
+
+    errorToast?.showToast(
+      child: toast,
+      toastDuration: const Duration(seconds: 3),
+    );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    successToast = FToast();
+    successToast?.init(context);
+    errorToast = FToast();
+    errorToast?.init(context);
+  }
+
   Future save() async {
-    var res = await http.post(Uri.parse("http://localhost:8000/login"),
-        headers: <String, String>{
-          'Context-Type': 'application/json;charSet=UTF-8'
-        },
-        body: <String, String>{
-          'email': user.email,
-          'password': user.password
-        });
-    print(res.body);
-    Navigator.popAndPushNamed(context, "/homepage");
+    try {
+      var res = await http.post(Uri.parse("http://localhost:8000/login"),
+          headers: <String, String>{
+            'Context-Type': 'application/json;charSet=UTF-8'
+          },
+          body: <String, String>{
+            'userName': user.userName,
+            'password': user.password
+          });
+      print(res.body);
+      // showSuccessToast("Successfully Logged In");
+      // Navigator.popAndPushNamed(context, "/homepage");
+    } catch (error) {
+      print(error);
+    }
   }
 
   User user = User("", "", "", "");
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff46a094),
+      backgroundColor: Colors.white,
       body: Form(
         key: _formKey,
         child: SingleChildScrollView(
@@ -105,10 +163,9 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
-                        print("ok");
                         save();
                       } else {
-                        print("not ok");
+                        return;
                       }
                     },
                     child: const Text("Login"),
