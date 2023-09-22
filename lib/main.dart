@@ -9,9 +9,9 @@ void main() {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
     routes: {
-      '/homepage': (context) => const HomePage(),
       '/register': (context) => RegisterPage(),
       '/': (context) => LoginPage(),
+      '/homepage': (context) => const HomePage(),
       "/details": (context) => const DetailsPage(),
       "/category": (context) => const CategoryPage(),
     },

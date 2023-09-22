@@ -34,16 +34,14 @@ const registerUser = async (req, res) => {
       });
     }
 
-    const specialCharacterRegex = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\-]/;
+    // const specialCharacterRegex = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\-]/;
     const numberRegex = /[0-9]/;
-    const uppercaseLetterRegex = /[A-Z]/;
-
-    if (
-      !password.length < 8 ||
-      !specialCharacterRegex.test(password) ||
-      !numberRegex.test(password) ||
-      !uppercaseLetterRegex.test(password)
-    ) {
+    // const uppercaseLetterRegex = /[A-Z]/;
+    const regex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,}$/;
+    // password.length <= 8 ||
+    if (!numberRegex.test(password) || 
+      !regex.test(password)) {
       return res.status(400).json({
         error:
           "Password should be at least 8 characters long and contain at least one special character, one number, and one uppercase letter.",

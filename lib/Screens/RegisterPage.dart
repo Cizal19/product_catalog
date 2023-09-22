@@ -179,7 +179,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   }
                   return null;
                 },
-                obscureText: true,
+                // obscureText: true,
                 decoration: InputDecoration(
                   labelText: "Password",
                   prefixIcon: const Icon(Icons.password_outlined),
@@ -205,7 +205,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     }
                     return null;
                   },
-                  obscureText: true,
+                  // obscureText: true,
                   decoration: InputDecoration(
                     labelText: "Confirm Password",
                     prefixIcon: const Icon(Icons.password_outlined),
@@ -216,16 +216,16 @@ class _RegisterPageState extends State<RegisterPage> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                   )),
-              // Column(
-              //   crossAxisAlignment: CrossAxisAlignment.start,
-              //   children: [
-              //     SizedBox(height: 8), // Add some spacing
-              //     Text('- At least 8 characters'),
-              //     Text('- Special character'),
-              //     Text('- Number'),
-              //     Text('- Uppercase letter'),
-              //   ],
-              // ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: 8), // Add some spacing
+                  Text('- At least 8 characters'),
+                  Text('- Special character'),
+                  Text('- Number'),
+                  Text('- Uppercase letter'),
+                ],
+              ),
               const SizedBox(height: 50),
               Column(
                 children: [
