@@ -56,6 +56,15 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 
+  @override
+  void initState() {
+    super.initState();
+    successToast = FToast();
+    successToast?.init(context);
+    errorToast = FToast();
+    errorToast?.init(context);
+  }
+
   Future save() async {
     try {
       var res = await http.post(Uri.parse("http://localhost:8000/register"),
@@ -68,7 +77,7 @@ class _RegisterPageState extends State<RegisterPage> {
             'password': user.password,
             'confirmPassword': user.confirmPassword
           });
-      // print(res.body);
+      print(res.body);
       final decodedResponse = json.decode(res.body);
       if (res.statusCode == 201) {
         // The request was successful (status code 200)
@@ -97,7 +106,7 @@ class _RegisterPageState extends State<RegisterPage> {
               const SizedBox(height: 100),
               Text(
                 "Register",
-                style: TextStyle(color: Colors.white, fontSize: 35.0),
+                style: Theme.of(context).textTheme.headlineLarge,
               ),
               const SizedBox(height: 10),
               Text(
@@ -184,30 +193,39 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
               const SizedBox(height: 10),
               TextFormField(
-                controller: TextEditingController(text: user.confirmPassword),
-                onChanged: (value) {
-                  user.confirmPassword = value;
-                },
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return "Please enter Confirm Password";
-                  } else if (user.password != user.confirmPassword) {
-                    return "Password and Confirm Password do not match";
-                  }
-                  return null;
-                },
-                obscureText: true,
-                decoration: InputDecoration(
-                  labelText: "Confirm Password",
-                  prefixIcon: const Icon(Icons.password_outlined),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-              ),
+                  controller: TextEditingController(text: user.confirmPassword),
+                  onChanged: (value) {
+                    user.confirmPassword = value;
+                  },
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return "Please enter Confirm Password";
+                    } else if (user.password != user.confirmPassword) {
+                      return "Password and Confirm Password do not match";
+                    }
+                    return null;
+                  },
+                  obscureText: true,
+                  decoration: InputDecoration(
+                    labelText: "Confirm Password",
+                    prefixIcon: const Icon(Icons.password_outlined),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  )),
+              // Column(
+              //   crossAxisAlignment: CrossAxisAlignment.start,
+              //   children: [
+              //     SizedBox(height: 8), // Add some spacing
+              //     Text('- At least 8 characters'),
+              //     Text('- Special character'),
+              //     Text('- Number'),
+              //     Text('- Uppercase letter'),
+              //   ],
+              // ),
               const SizedBox(height: 50),
               Column(
                 children: [
@@ -220,10 +238,9 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
-                        print("ok");
                         save();
                       } else {
-                        print("not ok");
+                        return;
                       }
                     },
                     child: const Text(
@@ -240,6 +257,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             Navigator.popAndPushNamed(context, "/"),
                         child: const Text(
                           "Login",
+                          style: TextStyle(color: Color(0xff46a094)),
                         ),
                       ),
                     ],

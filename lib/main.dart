@@ -16,11 +16,12 @@ void main() {
       "/category": (context) => const CategoryPage(),
     },
     theme: ThemeData(
-      primaryTextTheme: TextTheme(
+      textTheme: TextTheme(
+          bodyMedium: TextStyle(color: Color(0xff46a094)),
           headlineLarge: TextStyle(
-        color: Color(0xff46a094),
-      )),
-      textTheme: TextTheme(bodyMedium: TextStyle(color: Color(0xff46a094))),
+            color: Color(0xff46a094),
+            fontWeight: FontWeight.w900,
+          )),
       // textButtonTheme: TextButtonThemeData(style: ButtonStyle())
     ),
   ));

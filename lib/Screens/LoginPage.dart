@@ -103,7 +103,7 @@ class _LoginPageState extends State<LoginPage> {
               const SizedBox(height: 150),
               Text(
                 "Welcome back",
-                style: Theme.of(context).primaryTextTheme.headlineLarge,
+                style: Theme.of(context).textTheme.headlineLarge,
               ),
               const SizedBox(height: 10),
               Text(
@@ -175,7 +175,10 @@ class _LoginPageState extends State<LoginPage> {
                         return;
                       }
                     },
-                    child: const Text("Login"),
+                    child: Text(
+                      "Login",
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -185,7 +188,10 @@ class _LoginPageState extends State<LoginPage> {
                         onPressed: () {
                           Navigator.popAndPushNamed(context, "/register");
                         },
-                        child: const Text("Signup"),
+                        child: Text(
+                          "Signup",
+                          style: Theme.of(context).textTheme.bodyMedium,
+                        ),
                       ),
                     ],
                   ),

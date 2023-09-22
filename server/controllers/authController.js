@@ -27,13 +27,27 @@ const registerUser = async (req, res) => {
     }
 
     // Check if password is good
-    if (!password || password.length < 8) {
-      return res
-        .status(400)
-        .json({
-          error:
-            "Password is required and should be at least 8 characters long",
-        });
+    if (!password) {
+      return res.status(400).json({
+        error:
+          "Password is required and should contain at least one special character, one number, and one uppercase letter.",
+      });
+    }
+
+    const specialCharacterRegex = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\-]/;
+    const numberRegex = /[0-9]/;
+    const uppercaseLetterRegex = /[A-Z]/;
+
+    if (
+      !password.length < 8 ||
+      !specialCharacterRegex.test(password) ||
+      !numberRegex.test(password) ||
+      !uppercaseLetterRegex.test(password)
+    ) {
+      return res.status(400).json({
+        error:
+          "Password should be at least 8 characters long and contain at least one special character, one number, and one uppercase letter.",
+      });
     }
 
     // Check if password and confirmPassword match
