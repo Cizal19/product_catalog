@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:product_catalog/models/products.api.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 Future<List<String>> getCategories() async {
   List productList = await ProductsApi.getProducts();
@@ -77,6 +78,16 @@ class _MyDrawerState extends State<MyDrawer> {
                 }
               },
             ),
+            Spacer(),
+            ElevatedButton(
+                onPressed: () {
+                  // Helper.saveUserLoggedInSharedPreference(false);
+                  Navigator.pushReplacementNamed(context, "/");
+                },
+                child: Text(
+                  "Logout",
+                  style: Theme.of(context).textTheme.bodyMedium,
+                )),
           ]),
     ));
   }
