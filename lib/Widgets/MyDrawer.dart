@@ -79,17 +79,20 @@ class _MyDrawerState extends State<MyDrawer> {
                 }
               },
             ),
-            Spacer(),
-            ElevatedButton(
-                onPressed: () async {
-                  var sharedPref = await SharedPreferences.getInstance();
-                  sharedPref.setBool(SpalshScreenState.KEYLOGIN, false);
-                  Navigator.pushReplacementNamed(context, "/login");
-                },
-                child: Text(
-                  "Logout",
-                  style: Theme.of(context).textTheme.bodyMedium,
-                )),
+            // Spacer(),
+            Positioned(
+              bottom: 0,
+              child: ElevatedButton(
+                  onPressed: () async {
+                    var sharedPref = await SharedPreferences.getInstance();
+                    sharedPref.setBool(SpalshScreenState.KEYLOGIN, false);
+                    Navigator.pushReplacementNamed(context, "/login");
+                  },
+                  child: Text(
+                    "Logout",
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  )),
+            ),
           ]),
     ));
   }
