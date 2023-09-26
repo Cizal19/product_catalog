@@ -92,7 +92,7 @@ class _RegisterPageState extends State<RegisterPage> {
     }
   }
 
-  User user = User("", "", "", "");
+  User user = User("", "", "", "", "");
   @override
   Widget build(BuildContext context) {
     return Scaffold(

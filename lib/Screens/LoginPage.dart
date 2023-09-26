@@ -89,7 +89,7 @@ class _LoginPageState extends State<LoginPage> {
     }
   }
 
-  User user = User("", "", "", "");
+  User user = User("", "", "", "", "");
   @override
   Widget build(BuildContext context) {
     return Scaffold(
