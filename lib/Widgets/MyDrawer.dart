@@ -40,15 +40,20 @@ class _MyDrawerState extends State<MyDrawer> {
           // Important: Remove any padding from the ListView.
           padding: EdgeInsets.zero,
           children: [
-            const UserAccountsDrawerHeader(
-              accountName: Text("John Doe"),
-              accountEmail: Text("johndoe@example.com"),
-              decoration: BoxDecoration(
-                color: Color(0xff6bbd99),
-              ),
-              currentAccountPicture: CircleAvatar(
-                backgroundColor: Colors.white,
-                child: Icon(Icons.person),
+            InkWell(
+              onTap: () {
+                Navigator.pushNamed(context, "/user");
+              },
+              child: const UserAccountsDrawerHeader(
+                accountName: Text("John Doe"),
+                accountEmail: Text("johndoe@example.com"),
+                decoration: BoxDecoration(
+                  color: Color(0xff6bbd99),
+                ),
+                currentAccountPicture: CircleAvatar(
+                  backgroundColor: Colors.white,
+                  child: Icon(Icons.person),
+                ),
               ),
             ),
             FutureBuilder<List<String>>(
@@ -80,19 +85,16 @@ class _MyDrawerState extends State<MyDrawer> {
               },
             ),
             // Spacer(),
-            Positioned(
-              bottom: 0,
-              child: ElevatedButton(
-                  onPressed: () async {
-                    var sharedPref = await SharedPreferences.getInstance();
-                    sharedPref.setBool(SpalshScreenState.KEYLOGIN, false);
-                    Navigator.pushReplacementNamed(context, "/login");
-                  },
-                  child: Text(
-                    "Logout",
-                    style: Theme.of(context).textTheme.bodyMedium,
-                  )),
-            ),
+            ElevatedButton(
+                onPressed: () async {
+                  var sharedPref = await SharedPreferences.getInstance();
+                  sharedPref.setBool(SpalshScreenState.KEYLOGIN, false);
+                  Navigator.pushReplacementNamed(context, "/login");
+                },
+                child: Text(
+                  "Logout",
+                  style: Theme.of(context).textTheme.bodyMedium,
+                )),
           ]),
     ));
   }
