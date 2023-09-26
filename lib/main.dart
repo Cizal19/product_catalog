@@ -5,6 +5,7 @@ import 'package:product_catalog/Screens/HomePage.dart';
 import 'package:product_catalog/Screens/LoginPage.dart';
 import 'package:product_catalog/Screens/RegisterPage.dart';
 import 'package:product_catalog/Screens/SplashScreen.dart';
+import 'package:product_catalog/Screens/UserDetailsPage.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -16,7 +17,7 @@ void main() {
       '/homepage': (context) => const HomePage(),
       "/details": (context) => const DetailsPage(),
       "/category": (context) => const CategoryPage(),
-      // "/": (context) => UserDetailsPage(user: user)
+      "/user": (context) => UserDetailsPage()
     },
     theme: ThemeData(
       // primaryTextTheme: TextTheme(bodyMedium: TextStyle(color: Colors.black)),
