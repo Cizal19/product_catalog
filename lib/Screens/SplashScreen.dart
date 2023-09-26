@@ -1,21 +1,21 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SpalshScreen extends StatefulWidget {
-  const SpalshScreen({super.key});
+  const SpalshScreen({Key? key}) : super(key: key);
 
   @override
-  State<SpalshScreen> createState() => _SpalshScreenState();
+  State<SpalshScreen> createState() => SpalshScreenState();
 }
 
-class _SpalshScreenState extends State<SpalshScreen> {
+class SpalshScreenState extends State<SpalshScreen> {
+  static const String KEYLOGIN = "login";
   @override
   void initState() {
     super.initState();
-    Timer(Duration(seconds: 2), () {
-      Navigator.pushReplacementNamed(context, "/login");
-    });
+    whereToGo();
   }
 
   @override
@@ -28,5 +28,21 @@ class _SpalshScreenState extends State<SpalshScreen> {
         ),
       ),
     );
+  }
+
+  void whereToGo() async {
+    var sharedPref = await SharedPreferences.getInstance();
+    var isLoggedIn = sharedPref.getBool(KEYLOGIN);
+    Timer(Duration(seconds: 2), () {
+      if (isLoggedIn != null) {
+        if (isLoggedIn) {
+          Navigator.pushReplacementNamed(context, "/homepage");
+        } else {
+          Navigator.pushReplacementNamed(context, "/login");
+        }
+      } else {
+        Navigator.pushReplacementNamed(context, "/login");
+      }
+    });
   }
 }

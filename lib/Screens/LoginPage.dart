@@ -3,6 +3,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:product_catalog/models/User.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:product_catalog/Screens/SplashScreen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -76,10 +78,13 @@ class _LoginPageState extends State<LoginPage> {
           });
       // print(res.body);
       final decodedResponse = json.decode(res.body);
+      var sharedPref = await SharedPreferences.getInstance();
+
       if (res.statusCode == 200) {
         // The request was successful (status code 200)
         showSuccessToast("Successfully Logged In");
-        Navigator.popAndPushNamed(context, "/homepage");
+        sharedPref.setBool(SpalshScreenState.KEYLOGIN, true);
+        Navigator.pushReplacementNamed(context, "/homepage");
       } else {
         // Handle error status codes as needed
         showErrorToast(decodedResponse["error"]);

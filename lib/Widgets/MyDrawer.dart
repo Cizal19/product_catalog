@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:product_catalog/Screens/SplashScreen.dart';
 import 'package:product_catalog/models/products.api.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -80,9 +81,10 @@ class _MyDrawerState extends State<MyDrawer> {
             ),
             Spacer(),
             ElevatedButton(
-                onPressed: () {
-                  // Helper.saveUserLoggedInSharedPreference(false);
-                  Navigator.pushReplacementNamed(context, "/");
+                onPressed: () async {
+                  var sharedPref = await SharedPreferences.getInstance();
+                  sharedPref.setBool(SpalshScreenState.KEYLOGIN, false);
+                  Navigator.pushReplacementNamed(context, "/login");
                 },
                 child: Text(
                   "Logout",
