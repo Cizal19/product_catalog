@@ -108,8 +108,23 @@ const loginUser = async (req, res) => {
   }
 };
 
+// const getUserDetails = async (req, res) => {
+//   const { userName } = req.body;
+//   try {
+//     const user = await User.findOne({userName});
+//     if(!user) {
+//       return res.status(400).json({error: "No user with the given username"})
+//     }
+//     res.json(user);
+//   } catch (error) {
+//     console.log(error.message);
+//     res.status(500).send("Server Error");
+//   }
+// };
+
 module.exports = {
   test,
   registerUser,
   loginUser,
+  // getUserDetails
 };
