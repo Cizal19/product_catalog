@@ -60,7 +60,10 @@ class _EditProfileModalState extends State<EditProfileModal> {
                 // _usernameController.text _emailController.text
                 Navigator.of(context).pop();
               },
-              child: Text('Save'),
+              child: Text(
+                'Save',
+                style: TextStyle(color: Color(0xff46a096)),
+              ),
             ),
           ],
         ),
