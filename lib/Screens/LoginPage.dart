@@ -84,6 +84,7 @@ class _LoginPageState extends State<LoginPage> {
         // The request was successful (status code 200)
         showSuccessToast("Successfully Logged In");
         sharedPref.setBool(SpalshScreenState.KEYLOGIN, true);
+        sharedPref.setString(SpalshScreenState.USERID, decodedResponse["_id"]);
         Navigator.pushReplacementNamed(context, "/homepage");
       } else {
         // Handle error status codes as needed

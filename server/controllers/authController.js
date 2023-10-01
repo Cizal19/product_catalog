@@ -96,7 +96,7 @@ const loginUser = async (req, res) => {
         {},
         (err, token) => {
           if (err) throw err;
-          res.cookie("token", token).status(200).json(user); // 200 status for success
+          res.status(200).json(user); // 200 status for success
         }
       );
     } else {
@@ -108,23 +108,45 @@ const loginUser = async (req, res) => {
   }
 };
 
-// const getUserDetails = async (req, res) => {
-//   const { userName } = req.body;
-//   try {
-//     const user = await User.findOne({userName});
-//     if(!user) {
-//       return res.status(400).json({error: "No user with the given username"})
-//     }
-//     res.json(user);
-//   } catch (error) {
-//     console.log(error.message);
-//     res.status(500).send("Server Error");
-//   }
-// };
+// get profile endpoint
+const getProfile = async (req, res) => {
+  try {
+    const existingUser = await User.findById(req.params.userId);
+
+    if (!existingUser) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    res.json(existingUser);
+  } catch (err) {
+    console.error("Error fetching user profile:", err);
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
+
+
+
+// update profile endpoint
+const updateProfile = async (req, res) => {
+ try {
+   const updatedUser = await User.findByIdAndUpdate(
+     req.params.userId,
+     req.body,
+     { new: true }
+   );
+   if (!updatedUser) {
+     return res.status(404).json({ error: "User not found" });
+   }
+   res.json(updatedUser);fr
+ } catch (err) {
+   console.error("Error updating user profile:", err);
+   res.status(500).json({ error: "Internal server error" });
+ }
+}
 
 module.exports = {
   test,
   registerUser,
   loginUser,
-  // getUserDetails
+  getProfile,
+  updateProfile
 };

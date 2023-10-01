@@ -6,10 +6,10 @@ POST  http://localhost:8000/register
 Content-Type: application/json
 
 {
-  "userName": "cizal",
-  "email": "test@example.com",
-  "password": "hello123",
-  "confirmPassword": "hello123"
+  "userName": "hinata",
+  "email": "hinata@example.com",
+  "password": "@Hello123",
+  "confirmPassword": "@Hello123"
 }
 
 ###
@@ -18,12 +18,25 @@ POST  http://localhost:8000/login
 Content-Type: application/json
 
 {
-  "userName": "cizal",
-  "password": "hello123"
+  "userName": "hinata2",
+  "password": "@Hello123"
 }
 
 ###
 
-GET http://localhost:8000/user
+GET http://localhost:8000/650a00869cd588867ff07fb9
+
+###
+
+PUT http://localhost:8000/65166638c2dc51ea1c6c4deb
+Content-Type: application/json
+
+{
+  "userName": "hinata3",
+  "email": "hinata3@example.com"
+}
+
+
+
 
 

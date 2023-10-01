@@ -12,6 +12,7 @@ class SpalshScreen extends StatefulWidget {
 
 class SpalshScreenState extends State<SpalshScreen> {
   static const String KEYLOGIN = "login";
+  static const String USERID = "userId";
   @override
   void initState() {
     super.initState();

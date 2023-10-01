@@ -1,12 +1,49 @@
 import 'package:flutter/material.dart';
+import 'package:product_catalog/Screens/SplashScreen.dart';
 import 'package:product_catalog/Widgets/MyAppBar.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:product_catalog/Widgets/EditProfileModal.dart';
 // import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:flutter/src/material/bottom_sheet.dart';
+// import 'package:product_catalog/models/User.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
-class UserDetailsPage extends StatelessWidget {
+class UserDetailsPage extends StatefulWidget {
   const UserDetailsPage({super.key});
+
+  @override
+  State<UserDetailsPage> createState() => _UserDetailsPageState();
+}
+
+class _UserDetailsPageState extends State<UserDetailsPage> {
+  String username = "";
+  String email = "";
+
+  fetchUserData() async {
+    try {
+      var sharedPref = await SharedPreferences.getInstance();
+      var userId = sharedPref.getString(SpalshScreenState.USERID);
+      var res = await http.get(Uri.parse("http://localhost:8000/$userId"));
+      // print(res.body);
+      final data = json.decode(res.body);
+      // print(data);
+      setState(() {
+        username = data["userName"];
+        email = data["email"];
+      });
+    } catch (error) {
+      // print("from here");
+      print(error);
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    fetchUserData();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +51,7 @@ class UserDetailsPage extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: MyAppBar(
         context: context,
-        title: "username",
+        title: username.toUpperCase(),
       ),
       body: SafeArea(
         child: Column(
@@ -39,7 +76,7 @@ class UserDetailsPage extends StatelessWidget {
               ),
             ),
             Text(
-              'Username',
+              username,
               style: TextStyle(
                 fontSize: 30.0,
                 fontWeight: FontWeight.bold,
@@ -74,7 +111,7 @@ class UserDetailsPage extends StatelessWidget {
                   color: Color(0xff46a096),
                 ),
                 title: Text(
-                  'test@gmail.com',
+                  email,
                   style: TextStyle(fontSize: 20, color: Colors.teal.shade900),
                 ),
               ),
