@@ -22,6 +22,7 @@ class ProductCard extends StatelessWidget {
                 Text(
                   product.title,
                   style: const TextStyle(
+                    color: Colors.black,
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                     letterSpacing: 1.5,
@@ -74,6 +75,7 @@ class ProductCard extends StatelessWidget {
                 Text(
                   product.description,
                   style: const TextStyle(
+                    color: Colors.black,
                     letterSpacing: 1.0,
                   ),
                 ),
@@ -83,15 +85,14 @@ class ProductCard extends StatelessWidget {
                     const Icon(Icons.star, color: Colors.orange),
                     Text(
                       ' ${product.rating}',
-                      style: const TextStyle(
-                        fontSize: 16,
-                      ),
+                      style: const TextStyle(fontSize: 16, color: Colors.black),
                     ),
                   ],
                 ),
                 const SizedBox(height: 8),
                 Text(
                   'In Stock: ${product.stock}',
+                  style: TextStyle(color: Colors.black),
                 ),
               ],
             ),
