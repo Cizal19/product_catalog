@@ -181,15 +181,21 @@ class _RegisterPageState extends State<RegisterPage> {
                 },
                 // obscureText: true,
                 decoration: InputDecoration(
-                  labelText: "Password",
-                  prefixIcon: const Icon(Icons.password_outlined),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
+                    labelText: "Password",
+                    prefixIcon: const Icon(Icons.password_outlined),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    suffixIcon: Tooltip(
+                      message:
+                          "At least 8 characters, a special character, a number, and an uppercase letter",
+                      child: Icon(Icons.help_outline),
+                      preferBelow: true,
+                      showDuration: Duration(seconds: 10),
+                    )),
               ),
               const SizedBox(height: 10),
               TextFormField(
@@ -216,16 +222,16 @@ class _RegisterPageState extends State<RegisterPage> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                   )),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(height: 8), // Add some spacing
-                  Text('- At least 8 characters'),
-                  Text('- Special character'),
-                  Text('- Number'),
-                  Text('- Uppercase letter'),
-                ],
-              ),
+              // Column(
+              //   crossAxisAlignment: CrossAxisAlignment.start,
+              //   children: [
+              //     SizedBox(height: 8), // Add some spacing
+              //     Text('- At least 8 characters'),
+              //     Text('- Special character'),
+              //     Text('- Number'),
+              //     Text('- Uppercase letter'),
+              //   ],
+              // ),
               const SizedBox(height: 50),
               Column(
                 children: [
@@ -254,7 +260,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       const Text("Already have an account?"),
                       TextButton(
                         onPressed: () =>
-                            Navigator.popAndPushNamed(context, "/"),
+                            Navigator.popAndPushNamed(context, "/login"),
                         child: const Text(
                           "Login",
                           style: TextStyle(color: Color(0xff46a094)),
