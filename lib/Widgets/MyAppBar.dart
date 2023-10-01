@@ -7,6 +7,7 @@ class MyAppBar extends AppBar {
     TextStyle? textStyle,
     Color? backgroundColor,
     IconThemeData? iconTheme,
+    IconButton? leading,
     String? title,
     List<Widget>? actions,
     required BuildContext context,
@@ -18,6 +19,7 @@ class MyAppBar extends AppBar {
           ),
           backgroundColor: backgroundColor ?? const Color(0xff46a094),
           iconTheme: iconTheme ?? const IconThemeData(color: Colors.white),
+          leading: leading,
           actions: actions ??
               <Widget>[
                 IconButton(

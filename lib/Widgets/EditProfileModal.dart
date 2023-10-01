@@ -1,4 +1,10 @@
+import 'dart:convert';
+
+import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:product_catalog/Screens/SplashScreen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class EditProfileModal extends StatefulWidget {
   @override
@@ -8,6 +14,50 @@ class EditProfileModal extends StatefulWidget {
 class _EditProfileModalState extends State<EditProfileModal> {
   TextEditingController _usernameController = TextEditingController();
   TextEditingController _emailController = TextEditingController();
+
+  Future save(String userName, String email) async {
+    try {
+      var sharedPref = await SharedPreferences.getInstance();
+      var userId = sharedPref.getString(SpalshScreenState.USERID);
+      var res = await http.put(Uri.parse("http://localhost:8000/$userId"),
+          headers: <String, String>{
+            'Context-Type': 'application/json;charSet=UTF-8'
+          },
+          body: <String, String>{
+            'userName': userName,
+            'email': email,
+          });
+      // print(res.body);
+      final data = json.decode(res.body);
+
+      if (res.statusCode == 200) {
+        await Flushbar(
+          flushbarPosition: FlushbarPosition.TOP,
+          title: 'Success',
+          message: 'Details Updated Successfully',
+          duration: Duration(seconds: 3),
+          backgroundColor: Color(0xff46a096),
+        ).show(context);
+        // Navigator.pop(
+        //     context, {"username": data["userName"], "email": data["email"]});
+        Navigator.pushReplacementNamed(context, "/user");
+      } else {
+        await Flushbar(
+          flushbarPosition: FlushbarPosition.TOP,
+          title: 'Error',
+          message: data["error"],
+          duration: Duration(seconds: 3),
+          backgroundColor: Colors.red,
+        ).show(context);
+      }
+
+      // success toast or failure toast
+      // check for existing email
+      //
+    } catch (error) {
+      print(error);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,9 +106,7 @@ class _EditProfileModalState extends State<EditProfileModal> {
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                // Handle saving changes here
-                // _usernameController.text _emailController.text
-                Navigator.of(context).pop();
+                save(_usernameController.text, _emailController.text);
               },
               child: Text(
                 'Save',

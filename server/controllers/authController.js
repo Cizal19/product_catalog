@@ -136,7 +136,7 @@ const updateProfile = async (req, res) => {
    if (!updatedUser) {
      return res.status(404).json({ error: "User not found" });
    }
-   res.json(updatedUser);fr
+   res.json(updatedUser).status(200);
  } catch (err) {
    console.error("Error updating user profile:", err);
    res.status(500).json({ error: "Internal server error" });

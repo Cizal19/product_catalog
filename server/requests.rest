@@ -28,12 +28,12 @@ GET http://localhost:8000/650a00869cd588867ff07fb9
 
 ###
 
-PUT http://localhost:8000/65166638c2dc51ea1c6c4deb
+PUT http://localhost:8000/650c2a47345502e8bdc2ca89
 Content-Type: application/json
 
 {
-  "userName": "hinata3",
-  "email": "hinata3@example.com"
+  "userName": "blue",
+  "email": "blue@example.com"
 }
 
 

@@ -28,7 +28,9 @@ class _UserDetailsPageState extends State<UserDetailsPage> {
       var res = await http.get(Uri.parse("http://localhost:8000/$userId"));
       // print(res.body);
       final data = json.decode(res.body);
+
       // print(data);
+
       setState(() {
         username = data["userName"];
         email = data["email"];
@@ -52,6 +54,16 @@ class _UserDetailsPageState extends State<UserDetailsPage> {
       appBar: MyAppBar(
         context: context,
         title: username.toUpperCase(),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context, {"username": username, "email": email});
+          },
+          icon: const Icon(
+            Icons.keyboard_arrow_left_outlined,
+            size: 30.0,
+            color: Colors.white,
+          ),
+        ),
       ),
       body: SafeArea(
         child: Column(

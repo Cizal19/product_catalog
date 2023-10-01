@@ -66,8 +66,12 @@ class _MyDrawerState extends State<MyDrawer> {
           padding: EdgeInsets.zero,
           children: [
             InkWell(
-              onTap: () {
-                Navigator.pushNamed(context, "/user");
+              onTap: () async {
+                dynamic user = await Navigator.pushNamed(context, "/user");
+                setState(() {
+                  username = user["username"];
+                  email = user["email"];
+                });
               },
               child: UserAccountsDrawerHeader(
                 accountName: Text(username),
