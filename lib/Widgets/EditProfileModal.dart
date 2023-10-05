@@ -50,10 +50,6 @@ class _EditProfileModalState extends State<EditProfileModal> {
           backgroundColor: Colors.red,
         ).show(context);
       }
-
-      // success toast or failure toast
-      // check for existing email
-      //
     } catch (error) {
       print(error);
     }
