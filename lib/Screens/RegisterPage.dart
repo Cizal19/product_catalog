@@ -19,7 +19,8 @@ class _RegisterPageState extends State<RegisterPage> {
   FToast? errorToast;
 
   showSuccessToast(String message) {
-    Widget toast = Container(
+    Widget toast;
+    toast = Container(
       padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(25.0),
@@ -77,7 +78,7 @@ class _RegisterPageState extends State<RegisterPage> {
             'password': user.password,
             'confirmPassword': user.confirmPassword
           });
-      print(res.body);
+      // print(res.body);
       final decodedResponse = json.decode(res.body);
       if (res.statusCode == 201) {
         // The request was successful (status code 200)
@@ -179,7 +180,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   }
                   return null;
                 },
-                // obscureText: true,
+                obscureText: true,
                 decoration: InputDecoration(
                     labelText: "Password",
                     prefixIcon: const Icon(Icons.password_outlined),
@@ -192,6 +193,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     suffixIcon: Tooltip(
                       message:
                           "At least 8 characters, a special character, a number, and an uppercase letter",
+                      triggerMode: TooltipTriggerMode.tap,
                       child: Icon(Icons.help_outline),
                       preferBelow: true,
                       showDuration: Duration(seconds: 10),
@@ -211,7 +213,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     }
                     return null;
                   },
-                  // obscureText: true,
+                  obscureText: true,
                   decoration: InputDecoration(
                     labelText: "Confirm Password",
                     prefixIcon: const Icon(Icons.password_outlined),
@@ -222,16 +224,6 @@ class _RegisterPageState extends State<RegisterPage> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                   )),
-              // Column(
-              //   crossAxisAlignment: CrossAxisAlignment.start,
-              //   children: [
-              //     SizedBox(height: 8), // Add some spacing
-              //     Text('- At least 8 characters'),
-              //     Text('- Special character'),
-              //     Text('- Number'),
-              //     Text('- Uppercase letter'),
-              //   ],
-              // ),
               const SizedBox(height: 50),
               Column(
                 children: [
