@@ -3,28 +3,32 @@
 
 ## Screens
 1. Splash Page
-![Splash Page](assets/screenshots/splash-screen.png)
+<img src="assets/screenshots/splash-screen.png" alt="Splash Page" width="200">
+
 2. Login Page
-![Splash Page](assets/screenshots/login-screen.png)
+<img src="assets/screenshots/login-screen.png" alt="Login Page" width="200">
 
 3. Register Page
-![Splash Page](assets/screenshots/register-screen.png)
+<img src="assets/screenshots/register-screen.png" alt="Register Page" width="200">
+
 
 4. Home Page
-![Splash Page](assets/screenshots/home-screen.png)
+<img src="assets/screenshots/home-screen.png" alt="Home Page" width="200">
+
 
 5. Product Details Page
-![Splash Page](assets/screenshots/product-details-screen.png)
+<img src="assets/screenshots/product-details-screen.png" alt="Product Details Page" width="200">
+
 
 6. Category Page
-![Splash Page](assets/screenshots/category-screen.png)
+<img src="assets/screenshots/category-screen.png" alt="Category Page" width="200">
 
 7. Search Page
-![Splash Page](assets/screenshots/search-screen.png)
+<img src="assets/screenshots/search-screen.png" alt="Search Page" width="200">
 
 8. User Details Page
-![Splash Page](assets/screenshots/user-details1.png)
-![Splash Page](assets/screenshots/user-details2.png)
+<img src="assets/screenshots/user-details1.png" alt="User Details Page" width="200">
+<img src="assets/screenshots/user-details2.png" alt="User Details Edit Modal " width="200">
 
 
 ### Splash Screen
